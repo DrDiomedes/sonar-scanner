@@ -24,6 +24,18 @@ pipeline {
           sh """
             ${scannerHome}/bin/sonar-scanner \
               -Dsonar.projectKey=prueba-pipeline \
+              -Dsonar.projectName=SonarPipeline \
+              -Dsonar.projectVersion=1.0 \
+              -Dsonar.sources=. \
+              -Dsonar.login=miusuario \
+              -Dsonar.password=miscredenciales \
+              -Dsonar.host.url=http://ado.sonar.com:9000
+          """
+          
+          /*
+          sh """
+            ${scannerHome}/bin/sonar-scanner \
+              -Dsonar.projectKey=prueba-pipeline \
               -Dsonar.sources=./${PROJECT_ROOT} \
               -Dsonar.tests=./${PROJECT_ROOT}/test \
               -Dsonar.javascript.lcov.reportPaths=./${PROJECT_ROOT}/coverage/lcov.info \
@@ -32,6 +44,7 @@ pipeline {
               -Dsonar.password=&.UocnjF4<FZ \
               -Dsonar.host.url=http://ado.sonar.com:9000
           """
+          */
         }
 
         timeout(time: 2, unit: 'MINUTES') {
