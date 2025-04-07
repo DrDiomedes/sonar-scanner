@@ -18,19 +18,19 @@ pipeline {
 
     stage('Install deps') {
       steps {
-        sh "cd ${PROJECT_ROOT}; npm install"
+        sh "npm install"
       }
     }
 
     stage('Test') {
       steps {
-        sh "cd ${PROJECT_ROOT}; npm run test"
+        sh "npm run test"
       }
     }
 
     stage('Coverage') {
       steps {
-        sh "cd ${PROJECT_ROOT}; npm run coverage"
+        sh "npm run coverage"
       }
     }
 
