@@ -27,8 +27,8 @@ pipeline {
               -Dsonar.projectName=SonarPipeline \
               -Dsonar.projectVersion=1.0 \
               -Dsonar.sources=. \
-              -Dsonar.login=miusuario \
-              -Dsonar.password=miscredenciales \
+              -Dsonar.login=Javier_Alarcon \
+              -Dsonar.password=&.UocnjF4<FZ \
               -Dsonar.host.url=http://localhost:9000
           """
           
