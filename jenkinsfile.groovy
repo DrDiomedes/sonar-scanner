@@ -29,8 +29,9 @@ pipeline {
               -Dsonar.sources=. \
               -Dsonar.login=Javier_Alarcon \
               -Dsonar.password=&.UocnjF4<FZ \
-              -Dsonar.host.url=http://localhost:9000
-          """
+              -Dsonar.host.url=http://a63624d9132de488682b9fd86a811aa8-550206468.us-east-2.elb.amazonaws.com/sonarqube/sessions/new?return_to=%2Fsonarqube%2F
+          """,
+          returnStatus: true  
         }
 
         timeout(time: 2, unit: 'MINUTES') {
