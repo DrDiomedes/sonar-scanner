@@ -6,8 +6,10 @@ pipeline {
   }
 
   environment {
-    // No estás usando src/, así que mejor usar la raíz o eliminar esto
     PROJECT_ROOT = '.'
+    SONARQUBE_URL = 'http://a63624d9132de488682b9fd86a811aa8-550206468.us-east-2.elb.amazonaws.com/sonarqube'
+    SONARQUBE_LOGIN = 'Javier_Alarcon'
+    SONARQUBE_PASSWORD = '&.UocnjF4<FZ'
   }
 
   stages {
@@ -17,34 +19,30 @@ pipeline {
       }
     }
 
-    stage('Validar conexión a SonarQube') {
+    stage('Ejecutar escaneo SonarQube') {
       environment {
         scannerHome = tool 'sonar-scanner'
       }
       steps {
         withSonarQubeEnv('sonarqube') {
-          script {
-            def status = sh(
-              script: """
-                ${scannerHome}/bin/sonar-scanner \
-                  -Dsonar.projectKey=prueba-pipeline \
-                  -Dsonar.projectName=SonarPipeline \
-                  -Dsonar.projectVersion=1.0 \
-                  -Dsonar.sources=. \
-                  -Dsonar.login=Javier_Alarcon \
-                  -Dsonar.password='&.UocnjF4<FZ' \
-                  -Dsonar.host.url=http://a63624d9132de488682b9fd86a811aa8-550206468.us-east-2.elb.amazonaws.com/sonarqube
-              """,
-              returnStatus: true
-            )
+          sh """
+            ${scannerHome}/bin/sonar-scanner \
+              -Dsonar.projectKey=prueba-pipeline \
+              -Dsonar.projectName=SonarPipeline \
+              -Dsonar.projectVersion=1.0.${BUILD_NUMBER} \
+              -Dsonar.sources=${PROJECT_ROOT} \
+              -Dsonar.login=${SONARQUBE_LOGIN} \
+              -Dsonar.password='${SONARQUBE_PASSWORD}' \
+              -Dsonar.host.url=${SONARQUBE_URL}
+          """
+        }
+      }
+    }
 
-            if (status == 0) {
-              echo "✅ Login exitoso a SonarQube"
-            } else {
-              echo "❌ Login fallido a SonarQube"
-              error("Falló la autenticación con SonarQube")
-            }
-          }
+    stage('Verificar resultado del análisis') {
+      steps {
+        timeout(time: 2, unit: 'MINUTES') {
+          waitForQualityGate abortPipeline: true
         }
       }
     }
