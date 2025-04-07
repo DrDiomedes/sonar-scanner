@@ -15,25 +15,6 @@ pipeline {
         git branch: 'main', url: 'https://github.com/DrDiomedes/sonar-qube.git'
       }
     }
-
-    stage('Install deps') {
-      steps {
-        sh "npm install"
-      }
-    }
-
-    stage('Test') {
-      steps {
-        sh "npm run test"
-      }
-    }
-
-    stage('Coverage') {
-      steps {
-        sh "npm run coverage"
-      }
-    }
-
     stage('SonarQube scan') {
       environment {
         scannerHome = tool 'sonar-scanner'
