@@ -8,8 +8,6 @@ pipeline {
   environment {
     PROJECT_ROOT = '.'
     SONARQUBE_URL = 'http://a63624d9132de488682b9fd86a811aa8-550206468.us-east-2.elb.amazonaws.com/sonarqube'
-    SONARQUBE_LOGIN = 'Javier_Alarcon'
-    SONARQUBE_PASSWORD = '&.UocnjF4<FZ'
   }
 
   stages {
@@ -25,16 +23,17 @@ pipeline {
       }
       steps {
         withSonarQubeEnv('sonarqube') {
-          sh """
-            ${scannerHome}/bin/sonar-scanner \
-              -Dsonar.projectKey=prueba-pipeline \
-              -Dsonar.projectName=SonarPipeline \
-              -Dsonar.projectVersion=1.0.${BUILD_NUMBER} \
-              -Dsonar.sources=${PROJECT_ROOT} \
-              -Dsonar.login=${SONARQUBE_LOGIN} \
-              -Dsonar.password='${SONARQUBE_PASSWORD}' \
-              -Dsonar.host.url=${SONARQUBE_URL}
-          """
+          withCredentials([string(credentialsId: '31aa0c79-c552-4d6c-9c22-fd5e646438ad', variable: 'SONAR_TOKEN')]) {
+            sh """
+              ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.projectKey=prueba-pipeline \
+                -Dsonar.projectName=SonarPipeline \
+                -Dsonar.projectVersion=1.0 \
+                -Dsonar.sources=${PROJECT_ROOT} \
+                -Dsonar.token=${SONAR_TOKEN} \
+                -Dsonar.host.url=${SONARQUBE_URL}
+            """
+          }
         }
       }
     }
