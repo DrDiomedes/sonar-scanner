@@ -29,7 +29,7 @@ pipeline {
               -Dsonar.sources=. \
               -Dsonar.login=miusuario \
               -Dsonar.password=miscredenciales \
-              -Dsonar.host.url=http://ado.sonar.com:9000
+              -Dsonar.host.url=http://localhost:9000
           """
           
           /*
