@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/DrDiomedes/sonar-qube.git'
+        git branch: 'main', url: 'https://github.com/DrDiomedes/sonar-qube.git'
       }
     }
 
