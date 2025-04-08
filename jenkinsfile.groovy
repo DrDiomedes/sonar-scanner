@@ -7,7 +7,7 @@ pipeline {
 
   environment {
     PROJECT_ROOT = '.'
-    SONARQUBE_URL = 'http://a63624d9132de488682b9fd86a811aa8-550206468.us-east-2.elb.amazonaws.com/sonarqube'
+    SONARQUBE_URL = 'http://sonarqube.sonarqube.svc:9000/sonarqube'
   }
 
   stages {
@@ -32,6 +32,9 @@ pipeline {
                 -Dsonar.sources=${PROJECT_ROOT} \
                 -Dsonar.token=${SONAR_TOKEN} \
                 -Dsonar.host.url=${SONARQUBE_URL}
+            """
+            sh """
+            curl -i http://sonarqube.sonarqube.svc:9000/sonarqube
             """
           }
         }
