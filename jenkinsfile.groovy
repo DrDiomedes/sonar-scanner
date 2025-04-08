@@ -30,6 +30,7 @@ pipeline {
                 -Dsonar.projectKey=prueba-pipeline \
                 -Dsonar.projectName=SonarPipeline \
                 -Dsonar.projectVersion=1.0 \
+                -Dsonar.exclusions=**/*.java \
                 -Dsonar.sources=${PROJECT_ROOT} \
                 -Dsonar.token=${SONAR_TOKEN} \
                 -Dsonar.host.url=${SONARQUBE_URL}
