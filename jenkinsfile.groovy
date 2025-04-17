@@ -17,7 +17,7 @@ pipeline {
 
     stage('Análisis SonarQube') {
       steps {
-        sonarScan()
+        sonar-scan()
       }
     }
   }
