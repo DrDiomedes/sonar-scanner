@@ -20,5 +20,21 @@ pipeline {
         sonarScan()
       }
     }
+
+    stage('Análisis Semgrep') {
+      steps {
+        sh '''
+          echo "Instalando Semgrep..."
+          pip install --upgrade pip
+          pip install semgrep
+
+          echo "Ejecutando análisis Semgrep..."
+          semgrep scan ${PROJECT_ROOT} \
+            --config auto \
+            --timeout-threshold 10000 \
+            --json -output semgrep-result.json
+        '''
+      }
+    }
   }
 }
