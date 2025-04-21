@@ -25,7 +25,7 @@ pipeline {
       steps {
         sh '''
           echo "Instalando Semgrep..."
-          apt-get install -y python3 python3-pip
+          sudo apt-get install -y python3 python3-pip
           pip install --upgrade pip
           pip install semgrep
 
