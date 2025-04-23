@@ -42,7 +42,7 @@ pipeline {
             --config semgrep-rules/owasp-top-ten.yml \
             --metrics=off \
             --timeout-threshold 10000 \
-            --json-output semgrep-result.json
+            
             --verbose
         '''
       }
