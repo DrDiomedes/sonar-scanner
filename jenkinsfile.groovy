@@ -27,6 +27,7 @@ pipeline {
           echo "Ejecutando análisis Semgrep..."
           semgrep --version 
           semgrep scan ${PROJECT_ROOT} \
+            --metrics=off \
             --config p/java	 \
             --config p/java-spring \
             --config p/security-audit \
