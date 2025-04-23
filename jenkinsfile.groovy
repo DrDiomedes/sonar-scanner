@@ -28,6 +28,10 @@ pipeline {
 
     stage('Análisis Semgrep') {
       steps {
+        sastScan()
+        
+
+        /*
         echo "03 - INICIA ESCANEO ESTATICO DEL CODIGO CON SEMGREP "
         def repoUrl = config.repo ?: env.PROJECT
         def appname = repoUrl.tokenize('/').last().replace('.git', '')
@@ -52,6 +56,7 @@ pipeline {
           ls -la
         '''
         archiveArtifacts artifacts: 'semgrep-result.json', allowEmptyArchive: true
+        */
       }
     }
   }
