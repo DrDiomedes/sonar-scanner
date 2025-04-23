@@ -31,9 +31,7 @@ pipeline {
           curl -sSL https://semgrep.dev/c/p/java -o semgrep-rules/java.yml
           curl -sSL https://semgrep.dev/c/p/security-audit -o semgrep-rules/security-audit.yml
           curl -sSL https://semgrep.dev/c/p/owasp-top-ten -o semgrep-rules/owasp-top-ten.yml
-          ls -la app
           echo "Ejecutando análisis Semgrep..."
-          curl -I https://semgrep.dev 
           semgrep scan ${PROJECT_ROOT} \
             --config semgrep-rules/java.yml \
             --config semgrep-rules/security-audit.yml \
@@ -41,6 +39,7 @@ pipeline {
             --metrics=off \
             --timeout-threshold 10000 \
             --json-output semgrep-result.json
+          ls -la
         '''
       }
     }
