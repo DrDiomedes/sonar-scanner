@@ -41,6 +41,7 @@ pipeline {
             --json-output semgrep-result.json
           ls -la
         '''
+        archiveArtifacts artifacts: 'semgrep-result.json', allowEmptyArchive: true
       }
     }
   }
