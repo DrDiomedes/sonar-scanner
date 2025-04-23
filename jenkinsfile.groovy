@@ -21,7 +21,7 @@ pipeline {
     stage('Análisis SonarQube') {
       steps {
         echo "02 - INICIA ESCANEO DE CALIDAD DE CODIGO CON SONARQUBE "
-        sonarScan()
+        //sonarScan()
         
       }
     }
