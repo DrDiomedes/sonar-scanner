@@ -30,6 +30,7 @@ pipeline {
             --config auto \
             --timeout-threshold 10000 \
             --json -output semgrep-result.json
+            --debug
         '''
       }
     }
