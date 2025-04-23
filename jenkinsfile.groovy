@@ -27,10 +27,10 @@ pipeline {
         
           echo "Descargando y ejecutando análisis Semgrep..."
           mkdir -p semgrep-rules
-          curl -sSL https://semgrep.dev/c/p/java > semgrep-rules/java.yml
-          curl -sSL https://semgrep.dev/c/p/java-spring > semgrep-rules/java-spring.yml
-          curl -sSL https://semgrep.dev/c/p/security-audit > semgrep-rules/security-audit.yml
-          curl -sSL https://semgrep.dev/c/p/owasp-top-ten > semgrep-rules/owasp-top-ten.yml
+          curl -sSL https://semgrep.dev/c/p/java -o semgrep-rules/java.yml
+          curl -sSL https://semgrep.dev/c/p/java-spring -o semgrep-rules/java-spring.yml
+          curl -sSL https://semgrep.dev/c/p/security-audit -o semgrep-rules/security-audit.yml
+          curl -sSL https://semgrep.dev/c/p/owasp-top-ten -o semgrep-rules/owasp-top-ten.yml
           
           echo "Ejecutando análisis Semgrep..."
           semgrep --version 
