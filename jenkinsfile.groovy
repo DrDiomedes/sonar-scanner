@@ -18,6 +18,7 @@ pipeline {
     stage('Análisis SonarQube') {
       steps {
         //sonarScan()
+        echo "OMITIENDO SONAR"
       }
     }
 
