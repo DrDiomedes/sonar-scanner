@@ -26,12 +26,11 @@ pipeline {
         sh '''
           echo "Ejecutando análisis Semgrep..."
           semgrep --version 
-          semgrep scan ${PROJECT_ROOT} \
-            --metrics=off \
-            --config p/java	 \
+          semgrep scan ${PROJECT_ROOT} \            --config p/java	 \
             --config p/java-spring \
             --config p/security-audit \
             --config p/owasp-top-ten \
+            --metrics=off \
             --timeout-threshold 10000 \
             --json -output semgrep-result.json
             --debug
