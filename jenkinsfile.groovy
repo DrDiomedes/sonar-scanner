@@ -24,13 +24,18 @@ pipeline {
     stage('Análisis Semgrep') {
       steps {
         sh '''
+        
+          echo "Descargando y ejecutando análisis Semgrep..."
+          mkdir -p semgrep-rules
+          curl -sSL https://semgrep.dev/c/p/java > semgrep-rules/java.yml
+          curl -sSL https://semgrep.dev/c/p/java-spring > semgrep-rules/java-spring.yml
+          curl -sSL https://semgrep.dev/c/p/security-audit > semgrep-rules/security-audit.yml
+          curl -sSL https://semgrep.dev/c/p/owasp-top-ten > semgrep-rules/owasp-top-ten.yml
+          
           echo "Ejecutando análisis Semgrep..."
           semgrep --version 
           semgrep scan ${PROJECT_ROOT} \
-            --config p/java	\
-            --config p/java-spring \
-            --config p/security-audit \
-            --config p/owasp-top-ten \
+            --config semgrep-rules/	\
             --metrics=off \
             --timeout-threshold 10000 \
             --json -output semgrep-result.json
