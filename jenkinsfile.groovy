@@ -7,7 +7,6 @@ pipeline {
     PROJECT_ROOT = '.'
     SONARQUBE_URL = 'http://sonarqube.sonarqube.svc:9000/sonarqube'
   }
-
   stages {
     stage('Checkout') {
       steps {
@@ -20,5 +19,11 @@ pipeline {
         sonarScan()
       }
     }
+
+    stage('Análisis SonarQube') {
+      steps {
+        sastScan()
+      }
+    }    
   }
 }
