@@ -38,7 +38,7 @@ pipeline {
             --config semgrep-rules/	\
             --metrics=off \
             --timeout-threshold 10000 \
-            --json -output semgrep-result.json
+            --json-output semgrep-result.json
             --verbose
         '''
       }
