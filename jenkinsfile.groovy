@@ -29,8 +29,13 @@ pipeline {
     stage('Análisis Semgrep') {
       steps {
         echo "03 - INICIA ESCANEO ESTATICO DEL CODIGO CON SEMGREP "
+        def repoUrl = config.repo ?: env.PROJECT
+        def appname = repoUrl.tokenize('/').last().replace('.git', '')
+        def buildid = env.BUILD_ID
+        def commitcode = env.GIT_COMMIT
+        def timestamp = new Date().format("yyyyMMdd-HHmm")
+        def scanversion = "${appname}-${commitcode}-${timestamp}"
         sh '''
-        
           echo "Descargando y ejecutando análisis Semgrep..."
           mkdir -p semgrep-rules
           curl -sSL https://semgrep.dev/c/p/java -o semgrep-rules/java.yml
@@ -43,7 +48,7 @@ pipeline {
             --config semgrep-rules/owasp-top-ten.yml \
             --metrics=off \
             --timeout-threshold 10000 \
-            --json-output semgrep-result.json
+            --json-output sast-${scanversion}.json
           ls -la
         '''
         archiveArtifacts artifacts: 'semgrep-result.json', allowEmptyArchive: true
