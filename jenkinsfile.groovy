@@ -12,6 +12,7 @@ pipeline {
     stage('Checkout') {
       steps {
         dir ('app'){
+          echo "01 - INICIA CLONADO DEL REPOSITORIO DEL CODIGO "
           git branch: 'main', url: "${PROJECT}"
         }
       }
@@ -19,13 +20,15 @@ pipeline {
 
     stage('Análisis SonarQube') {
       steps {
-        //sonarScan()
-        echo "OMITIENDO SONAR"
+        echo "02 - INICIA ESCANEO DE CALIDAD DE CODIGO CON SONARQUBE "
+        sonarScan()
+        
       }
     }
 
     stage('Análisis Semgrep') {
       steps {
+        echo "03 - INICIA ESCANEO ESTATICO DEL CODIGO CON SEMGREP "
         sh '''
         
           echo "Descargando y ejecutando análisis Semgrep..."
