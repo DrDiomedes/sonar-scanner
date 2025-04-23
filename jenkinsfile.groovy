@@ -32,7 +32,7 @@ pipeline {
           curl -sSL https://semgrep.dev/c/p/java-spring -o semgrep-rules/java-spring.yml
           curl -sSL https://semgrep.dev/c/p/security-audit -o semgrep-rules/security-audit.yml
           curl -sSL https://semgrep.dev/c/p/owasp-top-ten -o semgrep-rules/owasp-top-ten.yml
-          ls -la
+          ls -la semgrep-rules
           echo "Ejecutando análisis Semgrep..."
           semgrep --version 
           semgrep scan ${PROJECT_ROOT} \
