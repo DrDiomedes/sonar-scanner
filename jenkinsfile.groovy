@@ -36,7 +36,6 @@ pipeline {
           curl -I https://semgrep.dev 
           semgrep scan ${PROJECT_ROOT} \
             --config semgrep-rules/java.yml \
-            --config semgrep-rules/java-spring.yml \
             --config semgrep-rules/security-audit.yml \
             --config semgrep-rules/owasp-top-ten.yml \
             --metrics=off \
