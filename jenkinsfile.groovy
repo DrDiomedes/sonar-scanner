@@ -25,6 +25,7 @@ pipeline {
       steps {
         sh '''
           echo "Ejecutando análisis Semgrep..."
+          semgrep --version 
           semgrep scan ${PROJECT_ROOT} \
             --config auto \
             --timeout-threshold 10000 \
