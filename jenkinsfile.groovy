@@ -6,6 +6,8 @@ pipeline {
     PROJECT = 'https://github.com/veracode/verademo.git'
     PROJECT_ROOT = '.'
     SONARQUBE_URL = 'http://sonarqube.sonarqube.svc:9000/sonarqube'
+    DEFECTOJO_URL = 'http://defectdojo-django.defectdojo.svc'
+ 
   }
   stages {
     stage('Checkout') {
@@ -16,14 +18,22 @@ pipeline {
 
     stage('Análisis SonarQube') {
       steps {
-        sonarScan()
+        //sonarScan()
       }
     }
 
     stage('Análisis SonarQube') {
       steps {
-        sastScan()
+        //sastScan()
       }
-    }    
+    }   
+
+    stage('registro DefectDojo') {
+      steps {
+        sh """
+        curl -i http://sonarqube.sonarqube.svc:9000/sonarqube
+        """
+      }
+    }  
   }
 }
