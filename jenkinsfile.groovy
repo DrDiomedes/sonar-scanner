@@ -30,7 +30,7 @@ pipeline {
 
     stage('registro DefectDojo') {
       steps {
-        sh """
+        sh '''
           file=$(ls sast-*.json | head -n 1)
           echo "Archivo detectado: $file"
       
@@ -44,7 +44,7 @@ pipeline {
             -F 'scan_date='$(date +%Y-%m-%d) \
             -F 'minimum_severity=Low'
         
-        """
+        '''
         
       }
     }  
