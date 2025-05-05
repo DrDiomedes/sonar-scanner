@@ -41,7 +41,7 @@ pipeline {
             -F "file=@$file" \
             -F "active=true" \
             -F "verified=true" \
-            -F "scan_date='$(date +%Y-%m-%d)" \
+            -F "scan_date=$(date +%Y-%m-%d)" \
             -F 'minimum_severity=Low'
         
         '''
