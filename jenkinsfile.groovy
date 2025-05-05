@@ -41,7 +41,7 @@ pipeline {
             -F "scan_type=Semgrep JSON Report" \
             -F "product_type_name=Research and Development" \
             -F "product_name=Verademo" \
-            -F "engagement_name=SAST Semgrep $(date +%Y-%m-%d)" \
+            -F "engagement_name=Semgrep Scan" \
             -F "file=@\$file" \
             -F "active=true" \
             -F "verified=true" \
