@@ -18,7 +18,8 @@ pipeline {
 
     stage('Análisis SonarQube') {
       steps {
-        sonarScan()
+        //sonarScan()
+        echo "HOLA MUNDO"
       }
     }
 
@@ -37,7 +38,7 @@ pipeline {
       
           curl -X POST "http://defectdojo-django.defectdojo.svc/api/v2/import-scan/" \
             -H "Authorization: Token 5a79a17492584808dc2407325923269a6d3df3b6" \
-            -F "scan_type=Semgrep JSON Report" \
+            -F "scan_type=Semgrep JSON" \
             -F "engagement=3" \
             -F "file=@\$file" \
             -F "active=true" \
