@@ -38,13 +38,17 @@ pipeline {
       
           curl -v -i -X POST "http://defectdojo-django.defectdojo.svc/api/v2/import-scan/" \
             -H "Authorization: Token 5a79a17492584808dc2407325923269a6d3df3b6" \
-            -F "scan_type=Semgrep JSON" \
-            -F "engagement=3" \
+            -F scan_type="Semgrep JSON Report" \
+            -F  product_type_name="Research and Development" 
+            -F product_name="verademo" \
+            -F engagement_name="SAST Semgrep $(date +%Y-%m-%d)" \
             -F "file=@\$file" \
             -F "active=true" \
             -F "verified=true" \
             -F "scan_date=\$scan_date" \
-            -F "minimum_severity=Low"
+            -F "minimum_severity=Low" \
+            -F auto_create_context=true \
+            -F deduplication_on_engagement=true
         
         '''
         
