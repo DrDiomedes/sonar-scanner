@@ -31,7 +31,7 @@ pipeline {
     stage('registro DefectDojo') {
       steps {
         sh """
-        curl -i http://defectdojo-django.defectdojo.svc
+        curl http://defectdojo-django.defectdojo.svc
         """
       }
     }  
