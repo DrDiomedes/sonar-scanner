@@ -38,7 +38,7 @@ pipeline {
             -H "Authorization: Token 5a79a17492584808dc2407325923269a6d3df3b6" \
             -F 'scan_type=Semgrep JSON Report' \
             -F 'engagement=Semgrep Scan' \
-            -F 'file=@$file' \
+            -F "file=@$file" \
             -F 'active=true' \
             -F 'verified=true' \
             -F 'scan_date='$(date +%Y-%m-%d) \
