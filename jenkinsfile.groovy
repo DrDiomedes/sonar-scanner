@@ -31,7 +31,7 @@ pipeline {
     stage('registro DefectDojo') {
       steps {
         sh """
-        curl https://defectdojo.tuempresa.com/api/v2/import-scan/
+        curl http://defectdojo-django.defectdojo.svc/api/v2/import-scan/
         """
       }
     }  
