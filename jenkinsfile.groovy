@@ -31,7 +31,7 @@ pipeline {
     stage('registro DefectDojo') {
       steps {
         sh """
-        curl -i http://sonarqube.sonarqube.svc:9000/sonarqube
+        curl -i http://defectdojo-django.defectdojo.svc
         """
       }
     }  
