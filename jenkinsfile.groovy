@@ -18,13 +18,13 @@ pipeline {
 
     stage('Análisis SonarQube') {
       steps {
-        //sonarScan()
+        sonarScan()
       }
     }
 
-    stage('Análisis SonarQube') {
+    stage('Análisis Semgrep') {
       steps {
-        //sastScan()
+        sastScan()
       }
     }   
 
