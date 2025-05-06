@@ -31,6 +31,13 @@ pipeline {
 
     stage('registro DefectDojo') {
       steps {
+        def repoUrl = config.repo ?: env.PROJECT
+        def appname = repoUrl.tokenize('/').last().replace('.git', '')
+        def buildid = env.BUILD_ID
+        def commitcode = env.GIT_COMMIT
+        def timestamp = new Date().format("yyyyMMdd-HHmm")
+        def scanversion = "${appname}-${commitcode}-${timestamp}"
+        def outputFile = "sast-${scanversion}.json"
         sh '''
           file=$(ls sast-*.json | head -n 1)
           echo "Archivo detectado: $file"
@@ -40,8 +47,9 @@ pipeline {
             -H "Authorization: Token 5a79a17492584808dc2407325923269a6d3df3b6" \
             -F "scan_type=Semgrep JSON Report" \
             -F "product_type_name=Research and Development" \
-            -F "product_name=Verademo" \
-            -F "engagement_name=Semgrep Scan" \
+            -F "product_name=$appname" \
+            -F "engagement_name=Semgrep Scan$(date +%Y-%m-%d)" \
+            -F "auto_create_context=true" \
             -F "file=@\$file" \
             -F "active=true" \
             -F "verified=true" \
