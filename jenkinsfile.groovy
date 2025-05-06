@@ -43,6 +43,7 @@ pipeline {
             file=$(ls sast-*.json | head -n 1)
             echo "Archivo detectado: $file"
             scan_date=$(date +%Y-%m-%d)
+            echo: "NOMBRE APLICACION: $appname" 
         
             curl -v -i -X POST "http://defectdojo-django.defectdojo.svc/api/v2/import-scan/" \
               -H "Authorization: Token 5a79a17492584808dc2407325923269a6d3df3b6" \
