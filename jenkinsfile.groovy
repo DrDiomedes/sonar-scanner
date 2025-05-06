@@ -32,7 +32,7 @@ pipeline {
     stage('registro DefectDojo') {
       steps {
         script {
-          def repoUrl = config.repo ?: env.PROJECT
+          def repoUrl = env.PROJECT
           def appname = repoUrl.tokenize('/').last().replace('.git', '')
           def buildid = env.BUILD_ID
           def commitcode = env.GIT_COMMIT
