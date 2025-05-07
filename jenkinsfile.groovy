@@ -20,7 +20,7 @@ pipeline {
       }
     }
 
-    stage('Análisis SonarQube') {
+    stage('Análisis Estatico') {
       steps {
         sastScan()
       }
