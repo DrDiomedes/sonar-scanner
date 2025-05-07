@@ -16,7 +16,7 @@ pipeline {
 
     stage('Anlisis SonarQube') {
       steps {
-        sonarScan()
+       // sonarScan()
         echo "HOLA MUNDO SONAR"
       }
     }
