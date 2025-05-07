@@ -8,25 +8,25 @@ pipeline {
     SONARQUBE_URL = 'http://sonarqube.sonarqube.svc:9000/sonarqube'
   }
   stages {
-    stage('Checkout') {
+    stage('01 - Checkout') {
       steps {
         git branch: 'main', url: "${PROJECT}"
       }
     }
 
-    stage('Anlisis SonarQube') {
+    stage('02 - Anlisis SonarQube') {
       steps {
        sonarScan()
       }
     }
 
-    stage('Análisis Estatico') {
+    stage('03 - Análisis Estatico') {
       steps {
         sastScan()
       }
     }
     
-    stage('Registro DefectDojo') {
+    stage('04 - Registro DefectDojo') {
       steps {
         defectdojoRegistry()
         
