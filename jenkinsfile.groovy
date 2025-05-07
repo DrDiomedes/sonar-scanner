@@ -24,6 +24,16 @@ pipeline {
       steps {
         sastScan()
       }
+    }
+    
+    stage('Análisis SonarQube') {
+      steps {
+        defectdojoRegistry()
+        
+      }
     }    
+
+
+    
   }
 }
