@@ -14,7 +14,7 @@ pipeline {
       }
     }
 
-    stage('Registro DefectDojo') {
+    stage('Anlisis SonarQube') {
       steps {
         sonarScan()
       }
@@ -26,14 +26,11 @@ pipeline {
       }
     }
     
-    stage('Análisis SonarQube') {
+    stage('Registro DefectDojo') {
       steps {
         defectdojoRegistry()
         
       }
     }    
-
-
-    
   }
 }
