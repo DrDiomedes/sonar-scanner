@@ -14,13 +14,13 @@ pipeline {
       }
     }
 
-    stage('02 - Anlisis SonarQube') {
+    stage('02 - Análisis Calidad SonarQube') {
       steps {
        sonarScan()
       }
     }
 
-    stage('03 - Análisis Estatico') {
+    stage('03 - Análisis Estatico Semgrep') {
       steps {
         sastScan()
       }
